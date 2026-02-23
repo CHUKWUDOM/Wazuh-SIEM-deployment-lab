@@ -6,10 +6,11 @@ ________________________________________
 ### Confirm VM Specs <br>
 
 ### Inside Ubuntu Terminal, Run:
-
-*free -h* <br>
-*nproc* <br>
-*lsb_release -a* <br>
+```bash
+free -h
+nproc
+lsb_release -a
+```
 
 #### You should see:
 •	4GB RAM<br>
@@ -24,7 +25,9 @@ ________________________________________
 ________________________________________
 ## STEP 1 — Update System <br>
 
-*sudo apt update && sudo apt upgrade -y* <br>
+```bash
+sudo apt update && sudo apt upgrade -y
+```
 
 #### What this does: <br> 
 •	Updates package index <br>
@@ -38,7 +41,9 @@ ________________________________________
 ________________________________________
 ## STEP 2 — Install curl <br>
 
-*sudo apt install curl -y* <br>
+```bash
+sudo apt install curl -y
+```
 
 ### Why: <br>
 
@@ -53,7 +58,9 @@ ________________________________________
 
 ### Run the command<br>
 
-*curl -sO https://packages.wazuh.com/4.14/wazuh-install.sh* <br>
+```bash
+curl -sO https://packages.wazuh.com/4.14/wazuh-install.sh
+```
 
 ________________________________________
 
@@ -61,7 +68,9 @@ ________________________________________
 
 Run the command <br>
 
-*sudo bash wazuh-install.sh -a* <br>
+```bash
+sudo bash wazuh-install.sh -a
+```
 
 ### The -a flag installs: <br>
 
@@ -77,11 +86,13 @@ RAM usage will increase.<br><br>
 
 ### Verify file downloaded: <br>
 
-*ls* <br>
+```bash
+ls
+```
 
 #### You should see: <br>
 
-*wazuh-install.sh* 
+*"wazuh-install.sh"* 
 <br>
 
 ________________________________________
@@ -106,22 +117,26 @@ ________________________________________
 
 ________________________________________
 
-## STEP 6 — Verify Services<br
+## STEP 6 — Verify Services<br>
 ### Run:<br>
 
-*sudo systemctl status wazuh-manager*<br>
-*sudo systemctl status wazuh-indexer*<br>
-*sudo systemctl status wazuh-dashboard*<br>
+```bash
+sudo systemctl status wazuh-manager
+sudo systemctl status wazuh-indexer
+sudo systemctl status wazuh-dashboard
+```
 
 ###  Each must show:<br>
 
-#### *active (running)*
+#### *"active (running)"*
 
 ### If not:<br>
 
-*sudo systemctl restart wazuh-manager*<br>
-*sudo systemctl restart wazuh-indexer*<br>
-*sudo systemctl restart wazuh-dashboard*<br>
+```bash
+sudo systemctl restart wazuh-manager
+sudo systemctl restart wazuh-indexer
+sudo systemctl restart wazuh-dashboard
+```
 ________________________________________
 <img width="1920" height="1080" alt="Dashboard Status" src="https://github.com/user-attachments/assets/b7875f46-1e97-4f15-ba9e-ad5c7ce481db" /><br>
 <img width="1920" height="1080" alt="Indexer Status" src="https://github.com/user-attachments/assets/20cd48a2-221f-427c-bd2d-ca3e4aa67aab" /><br>
@@ -132,11 +147,13 @@ ________________________________________
 
 ### This will be needed to access the wazuh dashboard on the web browser
 
-*ip a*<br>
+```bash
+ip a
+```
 
 ### Look for:<br>
 
-#### *inet 10.0.2.x (NAT address)*<br>
+#### *"inet 10.0.2.x (NAT address)"*<br>
 ________________________________________
 
 <img width="1920" height="1080" alt="IP addreess" src="https://github.com/user-attachments/assets/e7f6f9af-c843-48c4-92d1-ccacf5caace3" />
@@ -147,7 +164,7 @@ ________________________________________
 ## STEP 8 — Access Dashboard from Host<br>
 
 ### Because you configured port forwarding:<br>
-#### To setup, go to VM Settings -> Network -> Port Forwarding -> click the "+" sign
+#### To setup, go to *VM Settings -> Network -> Port Forwarding -> click the "+" sign*
 
 * Name: Wazuh
 * Protocol: TCP
@@ -192,7 +209,10 @@ ________________________________________
 
 ### Inside Ubuntu:<br>
 
-*sudo apt install htop -y*<br><br>
+```bash
+sudo apt install htop -y
+```
+<br>
 
 <img width="1920" height="1080" alt="HTOP install" src="https://github.com/user-attachments/assets/47a89c90-9463-4309-83ef-51b2e70bf587" />
 <br>
@@ -200,7 +220,9 @@ ________________________________________
 
 ### Run<br>
 
-*htop*<br>
+```bash
+htop
+```
 
 ### Observe:
 •	RAM usage (~2–3GB typical)<br>
@@ -217,11 +239,15 @@ ________________________________________
 
 ### Simulate restart:<br>
 
-*sudo systemctl restart wazuh-manager*<br>
+```bash
+sudo systemctl restart wazuh-manager
+```
 
 ### Check status again:<br>
 
-*sudo systemctl status wazuh-manager*<br>
+```bash
+sudo systemctl status wazuh-manager
+```
 
 ### Ensures services recover properly.<br>
 
@@ -239,7 +265,9 @@ If you did not save them, they can be retrieved.<br><br>
 
 Wazuh stores the auto-generated passwords in:<br>
 
-*sudo cat /usr/share/wazuh-indexer/opensearch-security/internal_users.yml*<br>
+```bash
+sudo cat /usr/share/wazuh-indexer/opensearch-security/internal_users.yml
+```
 
 This file contains hashed credentials for internal users including:<br>
 
@@ -252,13 +280,17 @@ This file contains hashed credentials for internal users including:<br>
 ### Recommended Way to Retrieve Admin Password<br>
 #### Wazuh installation script generates a password file in:<br>
 
-*sudo cat wazuh-passwords.txt*<br>
+```bash
+sudo cat wazuh-passwords.txt
+```
 
 If still in the directory where installation was run.<br>
 
 If not, check:<br>
 
-*sudo find / -name "wazuh-passwords.txt" 2>/dev/null*<br>
+```bash
+sudo find / -name "wazuh-passwords.txt" 2>/dev/null
+```
 
 #### This will locate the generated password file.<br><br>
 
@@ -269,7 +301,9 @@ If not, check:<br>
 
 ##### Run:<br>
 
-*sudo /usr/share/wazuh-indexer/plugins/opensearch-security/tools/hash.sh*<br>
+```bash
+sudo /usr/share/wazuh-indexer/plugins/opensearch-security/tools/hash.sh
+```
 
 ##### Then follow Wazuh password reset procedure via securityadmin tool.<br><br>
 
