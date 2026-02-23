@@ -1,6 +1,10 @@
 # Wazuh-SIEM-deployment-lab
-Your full Guideline on how to install, deploy and use the Wazuh SIEM tool for newbies.
+Your full Guideline on how to install, deploy and use the Wazuh SIEM tool for newbies.<br>
 
+
+## 📷 Deployment Preview
+
+<img width="1920" height="1080" alt="Dashboard 2" src="https://github.com/user-attachments/assets/feacc4c2-b28d-4794-930f-c380b5ca62d8" /><br><br>
 
 
 # Ubuntu Desktop (Single-Node Architecture)
